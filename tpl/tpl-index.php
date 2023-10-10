@@ -11,7 +11,7 @@
             <p class="msg"><?= $_SERVER['msg'] ?> </p>
             <?php unset($_SESSION['msg']) ?>
         <?php endif ?>
-        <form method="post" action="tpl/tpl-upload.php">
+        <form method="post" action="tpl/tpl-upload.php" enctype="multipart/form-data">
             <div class="upload-warapper">
                 <span class="file-name">Choose a file . . .</span>
                     <label for="file-upload">Browse 
