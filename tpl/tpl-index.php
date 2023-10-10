@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,10 +7,16 @@
 </head>
 <body>
     <div class="container">
-        <form method="post" action="./libs/lib-upload.php">
+        <?php if(isset($_SESSION['msg']) && $_SESSION['msg'] == true) : ?>
+            <p class="msg"><?= $_SERVER['msg'] ?> </p>
+            <?php unset($_SESSION['msg']) ?>
+        <?php endif ?>
+        <form method="post" action="tpl/tpl-upload.php">
             <div class="upload-warapper">
                 <span class="file-name">Choose a file . . .</span>
-                <label for="file-upload">Browse <input type="file" id="file-upload" name="uploadFile"></label>
+                    <label for="file-upload">Browse 
+                        <input type="file" id="file-upload" name="uploadedFile">
+                    </label>
             </div>
             <input type="submit" name="uploadBtn" value="Upload">
         </form>
