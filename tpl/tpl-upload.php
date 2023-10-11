@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 $msg = null;
@@ -16,15 +15,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // var_dump($FileNameEx);
             $FileExtention = strtolower(end($FileNameSeprate));
             $newFileName = md5(time().$FileName) . '.' . $FileExtention;
-            $allowedFileExtention = ['jpg', 'jpeg', 'gif', 'zip', 'rar', 'png'];
+            $allowedFileExtention = ['jpg', 'jpeg', 'gif', 'zip', 'rar', 'png', 'mp4'];
             if(in_array($FileExtention, $allowedFileExtention)) {
-                $uploadFileDir = "../bootstrap/upload/";
-                $destPath = $uploadFileDir . $newFileName;
-                if(move_uploaded_file($FileTmpName, $destPath)) {
-                    echo $msg = "The desired file was imported -  فایل اپلود شد ";
+                $alooedMaxFileSize = 5 * 1024 * 1024 ;
+                if($FileSize < $alooedMaxFileSize) {
+                    $uploadFileDir = "../bootstrap/upload/";
+                    $destPath = $uploadFileDir . $newFileName;
+                    if(move_uploaded_file($FileTmpName, $destPath)) {
+                        echo $msg = "The desired file was imported -  فایل اپلود شد ";
+                    }else{
+                        echo $msg = "Error uploading the file - خظا در اپلود فایل ";
+                    }
                 }else{
-                    echo $msg = "Error uploading the file - خظا در اپلود فایل ";
+                    echo $msg = "Your file size exceeds the limit - حجم فایل شما بیش از حد مجاز میباشد";   
                 }
+                
             }else{
                 echo $msg = "The file you want to upload is not allowed - فایل مورد نظر شما برای اپلود مجاز نمی باشد ";
             }
