@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // var_dump($FileNameEx);
             $FileExtention = strtolower(end($FileNameSeprate));
             $newFileName = md5(time().$FileName) . '.' . $FileExtention;
-            $allowedFileExtention = ['jpg', 'jpeg', 'gif', 'zip', 'rar', 'png', 'mp4'];
+            $allowedFileExtention = ['jpg', 'zip', 'rar', 'png'];
             if(in_array($FileExtention, $allowedFileExtention)) {
                 $alooedMaxFileSize = 5 * 1024 * 1024 ;
                 if($FileSize < $alooedMaxFileSize) {
@@ -40,4 +40,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $_SESSION['msg'] = $msg;
-// header("Location:");
+// header('Location: tpl-index.php');
+// exit();
