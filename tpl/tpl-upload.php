@@ -6,13 +6,13 @@ $msg = null;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['uploadBtn']) && $_POST['uploadBtn'] == 'Upload') {
         if(isset($_FILES['uploadedFile']) && !empty($_FILES['uploadedFile'])) {
-            // var_dump($_FILES['uploadedFile']);
+            var_dump($_FILES['uploadedFile']);
             $FileTmpName = $_FILES['uploadedFile']['tmp_name'];
             $FileName = $_FILES['uploadedFile']['name'];
             $FileSize = $_FILES['uploadedFile']['size'];
             $FileType = $_FILES['uploadedFile']['type'];
             $FileNameSeprate = explode('.',$FileName);
-            // var_dump($FileNameEx);
+            // var_dump($FileTmpName);
             $FileExtention = strtolower(end($FileNameSeprate));
             $newFileName = md5(time().$FileName) . '.' . $FileExtention;
             $allowedFileExtention = ['jpg', 'zip', 'rar', 'png'];
